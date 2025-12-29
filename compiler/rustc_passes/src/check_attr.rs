@@ -271,6 +271,7 @@ impl<'tcx> CheckAttrVisitor<'tcx> {
                     | AttributeKind::RustcScalableVector { .. }
                     | AttributeKind::RustcSimdMonomorphizeLaneLimit(..)
                     | AttributeKind::RustcShouldNotBeCalledOnConstItems(..)
+                    | AttributeKind::RustcTestMarker { .. }
                     | AttributeKind::ExportStable
                     | AttributeKind::FfiConst(..)
                     | AttributeKind::UnstableFeatureBound(..)
