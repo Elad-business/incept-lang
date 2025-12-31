@@ -1377,6 +1377,12 @@ pub static BUILTIN_ATTRIBUTES: &[BuiltinAttribute] = &[
         rustc_test_marker, Normal, template!(NameValueStr: "name"), WarnFollowing,
         EncodeCrossCrate::No, "the `#[rustc_test_marker]` attribute is used internally to track tests",
     ),
+
+    rustc_attr!(
+        rustc_test_dummy, Normal, template!(Word), ErrorPreceding,
+        EncodeCrossCrate::No, "the `#[rustc_test_dummy]` attribute is used internally to track tests",
+    ),
+
     rustc_attr!(
         rustc_unsafe_specialization_marker, Normal, template!(Word),
         WarnFollowing, EncodeCrossCrate::No,

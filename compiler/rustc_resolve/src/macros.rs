@@ -602,7 +602,10 @@ impl<'ra, 'tcx> Resolver<'ra, 'tcx> {
             if let Some(args) = &segment.args {
                 self.dcx().emit_err(errors::GenericArgumentsInMacroPath { span: args.span() });
             }
-            if kind == MacroKind::Attr && segment.ident.as_str().starts_with("rustc") {
+            if kind == MacroKind::Attr
+                && segment.ident.as_str().starts_with("rustc")
+                && segment.ident.name != sym::rustc_test_dummy
+            {
                 self.dcx().emit_err(errors::AttributesStartingWithRustcAreReserved {
                     span: segment.ident.span,
                 });

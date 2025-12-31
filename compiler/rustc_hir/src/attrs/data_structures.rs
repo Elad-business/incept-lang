@@ -981,6 +981,9 @@ pub enum AttributeKind {
     /// Represents `#[rustc_simd_monomorphize_lane_limit = "N"]`.
     RustcSimdMonomorphizeLaneLimit(Limit),
 
+    /// Represents `#[rustc_test_dummy]`
+    RustcTestDummy,
+
     /// Represents `#[rustc_test_marker]`
     RustcTestMarker { fn_name: Symbol },
 

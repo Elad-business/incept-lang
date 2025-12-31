@@ -306,6 +306,17 @@ impl<S: Stage> SingleAttributeParser<S> for RustcScalableVectorParser {
     }
 }
 
+pub(crate) struct RustcTestDummy;
+
+impl<S: Stage> NoArgsAttributeParser<S> for RustcTestDummy {
+    const PATH: &[Symbol] = &[sym::rustc_test_dummy];
+
+    const ON_DUPLICATE: OnDuplicate<S> = OnDuplicate::Ignore;
+
+    const ALLOWED_TARGETS: AllowedTargets = AllowedTargets::AllowList(&[Allow(Target::Fn)]);
+
+    const CREATE: fn(Span) -> AttributeKind = |_| AttributeKind::RustcTestDummy;
+}
 pub(crate) struct RustcTestMarker;
 
 impl<S: Stage> SingleAttributeParser<S> for RustcTestMarker {
