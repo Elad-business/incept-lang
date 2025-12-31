@@ -597,18 +597,31 @@ impl<'ra, 'tcx> Resolver<'ra, 'tcx> {
             return Ok((ext, res));
         }
 
+        let mut test_amount = vec![];
+        let mut rustc_dummy_amount = vec![];
         // Report errors for the resolved macro.
         for segment in &path.segments {
             if let Some(args) = &segment.args {
                 self.dcx().emit_err(errors::GenericArgumentsInMacroPath { span: args.span() });
             }
-            if kind == MacroKind::Attr
-                && segment.ident.as_str().starts_with("rustc")
-                && segment.ident.name != sym::rustc_test_dummy
-            {
-                self.dcx().emit_err(errors::AttributesStartingWithRustcAreReserved {
-                    span: segment.ident.span,
-                });
+            if kind != MacroKind::Attr {
+                continue;
+            }
+            if segment.ident.as_str().starts_with("rustc") {
+                if segment.ident.name == sym::rustc_test_dummy {
+                    rustc_dummy_amount.push(segment.ident.span);
+                } else {
+                    self.dcx().emit_err(errors::AttributesStartingWithRustcAreReserved {
+                        span: segment.ident.span,
+                    });
+                }
+            } else if segment.ident.name == sym::test {
+                test_amount.push(segment.ident.span);
+            }
+        }
+        if rustc_dummy_amount.len() != test_amount.len() {
+            if let Some(span) = rustc_dummy_amount.last() {
+                self.dcx().emit_err(errors::AttributesStartingWithRustcAreReserved { span: *span });
             }
         }
 

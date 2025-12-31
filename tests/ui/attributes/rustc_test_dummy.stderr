@@ -1,0 +1,41 @@
+error[E0658]: use of an internal attribute
+  --> $DIR/rustc_test_dummy.rs:5:1
+   |
+LL | #[rustc_test_dummy]
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: add `#![feature(rustc_attrs)]` to the crate attributes to enable
+   = note: the `#[rustc_test_dummy]` attribute is an internal implementation detail that will never be stable
+   = note: the `#[rustc_test_dummy]` attribute is used internally to track tests
+
+error[E0658]: use of an internal attribute
+  --> $DIR/rustc_test_dummy.rs:13:1
+   |
+LL | #[rustc_test_dummy]
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: add `#![feature(rustc_attrs)]` to the crate attributes to enable
+   = note: the `#[rustc_test_dummy]` attribute is an internal implementation detail that will never be stable
+   = note: the `#[rustc_test_dummy]` attribute is used internally to track tests
+
+error[E0658]: use of an internal attribute
+  --> $DIR/rustc_test_dummy.rs:20:1
+   |
+LL | #[rustc_test_dummy]
+   | ^^^^^^^^^^^^^^^^^^^
+   |
+   = help: add `#![feature(rustc_attrs)]` to the crate attributes to enable
+   = note: the `#[rustc_test_dummy]` attribute is an internal implementation detail that will never be stable
+   = note: the `#[rustc_test_dummy]` attribute is used internally to track tests
+
+warning: duplicated attribute
+  --> $DIR/rustc_test_dummy.rs:24:1
+   |
+LL | #[test]
+   | ^^^^^^^
+   |
+   = note: `#[warn(duplicate_macro_attributes)]` on by default
+
+error: aborting due to 3 previous errors; 1 warning emitted
+
+For more information about this error, try `rustc --explain E0658`.
