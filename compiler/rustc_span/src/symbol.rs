@@ -2009,6 +2009,7 @@ symbols! {
         rustc_std_internal_symbol,
         rustc_strict_coherence,
         rustc_symbol_name,
+        rustc_test_dummy,
         rustc_test_marker,
         rustc_then_this_would_need,
         rustc_trivial_field_reads,
